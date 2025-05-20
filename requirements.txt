@@ -1,6 +1,5 @@
 Flask
-requests
-ultralytics
-opencv-python
+torch>=1.8
+torchvision
+opencv-python-headless
 gunicorn
-Pillow
