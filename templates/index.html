@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ảnh phát hiện người</title>
+</head>
+<body>
+    <h1>Danh sách ảnh</h1>
+    {% for img in images %}
+        <div>
+            <img src="{{ url_for('static', filename='images/' ~ img) }}" width="300">
+            <p>{{ img }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>

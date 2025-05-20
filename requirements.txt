@@ -1,0 +1,6 @@
+Flask
+requests
+ultralytics
+opencv-python
+gunicorn
+Pillow
