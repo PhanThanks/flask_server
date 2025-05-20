@@ -1,15 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ảnh phát hiện người</title>
+    <meta charset="utf-8">
+    <title>ESP32-CAM Web Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f7f7f7;
+        }
+        .button-group {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .delete-button {
+            margin-top: 20px;
+            background-color: #dc3545;
+        }
+        .delete-button:hover {
+            background-color: #a71d2a;
+        }
+        .image-list {
+            margin-top: 30px;
+        }
+        .image-list img {
+            max-width: 90%;
+            height: auto;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Danh sách ảnh</h1>
-    {% for img in images %}
-        <div>
-            <img src="{{ url_for('static', filename='images/' ~ img) }}" width="300">
-            <p>{{ img }}</p>
-        </div>
-    {% endfor %}
+
+    <h1>📷 ESP32-CAM Điều khiển từ Web</h1>
+
+    <div class="button-group">
+        <form action="/toggle-flash" method="post">
+            <button type="submit">💡 Bật/Tắt Flash</button>
+        </form>
+        <form action="/manual-capture" method="post">
+            <button type="submit">📸 Chụp ảnh thủ công</button>
+        </form>
+    </div>
+
+    <form action="/delete-images" method="post">
+        <button class="delete-button" type="submit">🗑️ Xóa tất cả ảnh</button>
+    </form>
+
+    <div class="image-list">
+        {% for image in images %}
+            <img src="{{ url_for('static', filename='images/' + image) }}">
+        {% endfor %}
+    </div>
+
 </body>
 </html>
